@@ -1,0 +1,32 @@
+/* 
+---------------------------------------------
+font & reset css
+--------------------------------------------- 
+*/
+
+@import url('https://fonts.googleapis.com/css?family=Raleway:300,400,500,600,700');
+
+$font : 'Raleway', sans-serif;
+
+$light: 300;
+$normal: 400;
+$medium: 500;
+$semi: 600;
+$bold: 700;
+
+
+// General Colors
+$primaryColor: #747FEB;
+$secondaryColor: #FB236A;
+
+// Gradient Colors
+$gradientDark: #516093;
+$gradientLight: #7A88F1;
+
+//Heading Color
+$headingDark: #3B566E;
+$headingLight: #ffffff;
+
+// Text Colors
+$textDark: #6F8BA4;
+$textLight: #D5D8F3;

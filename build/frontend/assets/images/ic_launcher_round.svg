@@ -1,0 +1,26 @@
+<svg width="48" height="48" viewBox="0 0 48 48">
+  <defs>
+    <linearGradient id="ic_launcher_round-a" x1="0%" y1="0%" y2="100%">
+      <stop offset="0%" stop-color="#4ECDC4"/>
+      <stop offset="100%" stop-color="#446CB3"/>
+    </linearGradient>
+  </defs>
+  <g fill="none" fill-rule="evenodd">
+    <circle cx="24" cy="24" r="24" fill="url(#ic_launcher_round-a)"/>
+    <g fill="#FFF" transform="translate(7.333 16)">
+      <rect width="14.368" height="4.598" opacity=".5" rx="2.299"/>
+      <rect width="16.667" height="4.598" x="-1.169" y="6.034" opacity=".5" rx="2.299" transform="rotate(90 7.165 8.333)"/>
+      <circle cx="2.299" cy="2.299" r="2.299"/>
+      <polygon points="10.077 3.436 14.184 1.379 18.867 13.665 14.496 15.134" opacity=".5"/>
+      <polygon points="19.272 3.436 23.379 1.379 28.062 13.665 23.691 15.134" opacity=".5"/>
+      <polygon points="14.444 3.436 18.552 1.379 23.234 13.665 18.864 15.134" opacity=".5" transform="matrix(-1 0 0 1 37.679 0)"/>
+      <polygon points="23.64 3.385 27.743 1.328 33.085 13.665 28.715 15.134" opacity=".5" transform="matrix(-1 0 0 1 56.725 0)"/>
+      <circle cx="12.069" cy="2.299" r="2.299"/>
+      <circle cx="21.264" cy="2.299" r="2.299"/>
+      <circle cx="31.034" cy="2.299" r="2.299"/>
+      <circle cx="7.165" cy="14.368" r="2.299"/>
+      <circle cx="16.667" cy="14.368" r="2.299"/>
+      <circle cx="25.862" cy="14.368" r="2.299"/>
+    </g>
+  </g>
+</svg>
