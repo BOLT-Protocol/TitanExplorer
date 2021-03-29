@@ -33,14 +33,35 @@ const txTmp = ({
 }) => {
   const amount = value.split(".");
 
+  const _from = from.startsWith("[")
+    ? JSON.parse(from).map((a) => a.addresses[0])
+    : [from];
+
+    console.log(_from.length)
+
+  const _to = to.startsWith("[")
+    ? JSON.parse(to).map((a) => a.addresses[0])
+    : [to];
+
   return `
       <tr>
-          <td>${txHash}</td>
+        <td><img src="${iconUrl}" alt="${symbol}"></td>
+          <td>${formatLength(txHash)}</td>
           <td>
-              <a href="address.html">${from}</a>
+            ${_from
+              .map(
+                (addr) =>
+                  `<a href="address.html">${formatLength(addr)}</a><br/>`
+              )
+              .join("")}
           </td>
           <td>
-              <a href="address.html">${to}</a>
+          ${_to
+            .map(
+              (addr) => `<a href="address.html">${formatLength(addr)}</a><br/>`
+            )
+            .join("")}
+
           </td>
           <td>${amount[0]}<small>.${amount[1] || "0"}</small> ${symbol}</td>
           <!--
@@ -82,3 +103,13 @@ const blockTmp = ({ blockHeight, timestamp, txCount }) =>
     <td>${txCount}</td>
     </tr>
     `;
+
+const formatLength = (str, length = 16) => {
+  try {
+    return str.substr(0, length) + "...";
+  } catch (e) {
+    console.error(e);
+
+    return str;
+  }
+};
