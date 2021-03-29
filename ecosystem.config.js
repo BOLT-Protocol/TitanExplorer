@@ -21,7 +21,7 @@ module.exports = {
         user: 'ubuntu',
         key: `${process.env.HOME}/Documents/ssh/TideWallet3.pem`,
         host: '13.124.220.202',
-        ref: 'origin/master',
+        ref: 'origin/main',
         repo: 'https://github.com/BOLT-Protocol/TitanExplorer',
         path: '/home/ubuntu/workspace/TitanExplorer',
         'post-deploy': 'pm2 reload /home/ubuntu/workspace/TitanExplorer/source/ecosystem.config.js',
