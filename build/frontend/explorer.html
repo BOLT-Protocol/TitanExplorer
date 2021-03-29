@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,7 +8,7 @@
 	<title>Arda - Bitcoin and Cryptocurrency ICO Template</title>
 	<meta name="description" content="Arda is a Bitcoin and Cryptocurrency ICO Template by tempload." />
 	<meta name="keywords" content="bitcoin, ethereum, monero, ico, token, free token, btc, eth" />
-	<meta name="author" content="tempload"/>
+	<meta name="author" content="tempload" />
 
 	<!-- Favicon -->
 	<link rel="icon" type="image/png" href="assets/images/favicon.png" />
@@ -19,6 +20,7 @@
 	<!-- Custom CSS -->
 	<link href="assets/css/blue.css" rel="stylesheet" type="text/css">
 </head>
+
 <body>
 
 	<div class="loading-wrapper">
@@ -27,7 +29,7 @@
 			<div></div>
 			<div></div>
 		</div>
-	</div>	
+	</div>
 
 	<!-- ***** Header Area Start ***** -->
 	<header class="header-area">
@@ -37,8 +39,9 @@
 					<nav class="main-nav">
 						<!-- ***** Logo Start ***** -->
 						<a href="index.html" class="logo">
-							<img src="assets/images/logos/transparent-logo-blue.svg" class="light-logo" alt="Arda ICO"/>
-							<img src="assets/images/logos/white-logo-blue.svg" class="dark-logo" alt="Arda ICO"/>
+							<img src="assets/images/logos/transparent-logo-blue.svg" class="light-logo"
+								alt="Arda ICO" />
+							<img src="assets/images/logos/white-logo-blue.svg" class="dark-logo" alt="Arda ICO" />
 						</a>
 						<!-- ***** Logo End ***** -->
 
@@ -53,32 +56,32 @@
 									<a href="#">
 										<img src="assets/images/flags/en.png" alt=""><span>EN</span>
 									</a>
-								</li>	
+								</li>
 								<li>
 									<a href="#">
 										<img src="assets/images/flags/ru.png" alt=""><span>RU</span>
 									</a>
-								</li>	
+								</li>
 								<li>
 									<a href="#">
 										<img src="assets/images/flags/br.png" alt=""><span>BR</span>
 									</a>
-								</li>	
+								</li>
 							</ul>
 						</div>
 						<!-- ***** Lang End ***** -->
 
 						<!-- ***** Menu Start ***** -->
 						<ul class="nav">
-							<li><a href="blue-block-explorer.html">BLOCKCHAIN HOME</a></li>
-							<li><a href="blue-block-explorer-latest-blocks.html">LATEST BLOCKS</a></li>
-							<li><a href="blue-block-explorer-rich-list.html">RICH LIST</a></li>
+							<li><a href="explorer.html">BLOCKCHAIN HOME</a></li>
+							<li><a href="blocks.html">LATEST BLOCKS</a></li>
+							<li><a href="list.html">RICH LIST</a></li>
 							<li><a href="#" class="btn-nav-box">SIGN UP</a></li>
 						</ul>
 						<a class='menu-trigger'>
 							<span>Menu</span>
 						</a>
-						<!-- ***** Menu End ***** -->						
+						<!-- ***** Menu End ***** -->
 					</nav>
 				</div>
 			</div>
@@ -113,7 +116,7 @@
 					</div>
 				</div>
 			</div>
-		</div>	
+		</div>
 	</section>
 	<!-- ***** Wellcome Area End ***** -->
 
@@ -127,8 +130,9 @@
 				</div>
 				<div class="offset-lg-3 col-lg-6">
 					<div class="center-text">
-						<p>Fusce placerat pretium mauris, vel sollicitudin elit lacinia vitae. Quisque sit amet nisi erat.</p>
-					</div>					
+						<p>Fusce placerat pretium mauris, vel sollicitudin elit lacinia vitae. Quisque sit amet nisi
+							erat.</p>
+					</div>
 				</div>
 			</div>
 			<div class="row">
@@ -256,5 +260,30 @@
 	<!-- Global Init -->
 	<script src="assets/js/particle-blue.js"></script>
 	<script src="assets/js/custom.js"></script>
+
+	<script src="titan-js/setting.js"></script>
+	<script src="titan-js/api.js"></script>
+
+
+	<script>
+		$(document).ready(() => {
+			API.getNetwork().then((res) => {
+				console.log(res);
+				if (res.success) {
+					res.payload.forEach(el => {
+						$('.block-explorer-features .container').append(`<div class="item">
+							<div class="title">
+								<div class="icon"></div>
+								<h5>${el.name}</h5>
+							</div>
+							
+						</div>`);
+
+					});
+				}
+			})
+		});
+	</script>
 </body>
+
 </html>

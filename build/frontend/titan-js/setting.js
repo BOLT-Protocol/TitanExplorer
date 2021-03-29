@@ -1,0 +1,1 @@
+const ENDPOINT = 'https://service.tidewallet.io';
