@@ -15,8 +15,9 @@ const renderBlocks = (blocks) => {
       tmpGenetator(TMP.BLOCK, {
         name: el.name,
         blockHeight: el.blockHeight,
-        timestamp: el.timestamp,
+        timestamp: el.timestamp * 1000,
         txCount: el.txCount,
+        blockHash: el.blockHash
       })
     );
   });

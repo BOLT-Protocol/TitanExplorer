@@ -2,6 +2,8 @@ $(document).ready(() => {
   const search = new URLSearchParams(location.search);
   const address = search.get("address");
 
+  if (!address) return;
+
   Promise.all([
     API.getAddress(address),
     API.getTransactionsByAddress(address, {}),
@@ -39,7 +41,7 @@ const renderTransactions = (txs) => {
             to: el.to,
             value: el.value,
             symbol: el.symbol,
-            timestamp: el.timestamp,
+            timestamp: el.timestamp * 1000,
             block: el.block,
             fee: el.fee,
          })

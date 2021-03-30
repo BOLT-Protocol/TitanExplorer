@@ -111,12 +111,12 @@ const addressTmp = ({ address, txCount, balance, blockchain }) =>
     </table>
 `;
 
-const blockTmp = ({ name, blockHeight, timestamp, txCount }) =>
+const blockTmp = ({ name, blockHeight, timestamp, txCount, blockHash }) =>
   `
   <tr>
     <td>${name}</td>
-    <td><a href="block-detail.html">${blockHeight}</a></td>
-    <td>${timestamp}</td>
+    <td><a href="block-detail.html?blockHash=${blockHash}">${blockHeight}</a></td>
+    <td>${new Date(timestamp)}</td>
     <!-- <td>1 - 0.3 kB</td>-->
     <td>${txCount}</td>
     </tr>

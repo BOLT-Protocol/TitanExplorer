@@ -30,9 +30,9 @@ const API = {
     )(),
   getBlocks: _request("/blocks"),
   getBlockDetail: (blockchainId, blockId) =>
-    _request(`blockchain/${blockchainId}/block/${blockId}`),
+    _request(`/blockchain/${blockchainId}/block/${blockId}`)(),
   getTransactionsByBlock: (blockchainId, blockId) =>
     _request(`/blockchain/${blockchainId}/block/${blockId}/transactions`)(),
   postSearch: (keyword) => _request(`/search/${keyword}`, 'POST')(),
-  getMetrics: _request("blockchains/height/metrics"),
+  getMetrics: _request("/blockchains/height/metrics"),
 };

@@ -2,9 +2,8 @@ let searching = false;
 
 $(document).ready(() => {
   const $input = $(".search input");
-  $(".search button").click((e) => {
-    console.log(e);
 
+  $(".search button").click((e) => {
     if (!$input.val() || searching) {
       return;
     }
