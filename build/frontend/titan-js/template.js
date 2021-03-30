@@ -2,7 +2,8 @@ const TMP = {
   TRANSACTION: "TRANSACTION",
   ADDRESS: "ADDRESS",
   BLOCK: "BLOCK",
-  EXPLORER_ITEM: 'EXPLORER_ITEM'
+  EXPLORER_ITEM: "EXPLORER_ITEM",
+  SEARCH_RESAULT: "SEARCH_RESAULT",
 };
 
 const tmpGenetator = (tmp, resource) => {
@@ -19,10 +20,14 @@ const tmpGenetator = (tmp, resource) => {
   }
 
   if (tmp === TMP.EXPLORER_ITEM) {
-      return explorerItemTmp(resource);
+    return explorerItemTmp(resource);
   }
 
-  return "";
+  if (tmp === TMP.SEARCH_RESAULT) {
+      return searchResultTmp(resource);
+  }
+
+  if (TMP) return "";
 };
 
 const txTmp = ({
@@ -143,6 +148,58 @@ const explorerItemTmp = ({ name, blockHeight, tps, avgFee }) => `
         </div>
     </div>
 `;
+
+const searchResultTmp = (result) => {
+  const { block, transaction, address } = result;
+  return `
+        <div>
+            ${
+              block
+                ? `
+                <p>Block</p>
+                <ul>
+                    ${block
+                      .map(
+                        (v) =>
+                          `<li><a href="block-detail.html?blockHash=${v}">${v}</a></li>`
+                      )
+                      .join("")}
+                </ul>
+            `
+                : ""
+            }
+
+            ${
+              transaction
+                ? `
+            <p>Block</p>
+            <ul>
+                ${transaction
+                  .map(
+                    (v) =>
+                      `<li><a href="transaction-detail.html?hash=${v}">${v}</a></li>`
+                  )
+                  .join("")}
+            </ul>
+        `
+                : ""
+            }
+
+        ${
+          address
+            ? `
+        <p>Block</p>
+        <ul>
+            ${block
+              .map((v) => `<li><a href="address.html?address=${v}">${v}</a></li>`)
+              .join("")}
+        </ul>
+    `
+            : ""
+        }
+        </div>
+    `;
+};
 
 const formatLength = (str, length = 16) => {
   try {
