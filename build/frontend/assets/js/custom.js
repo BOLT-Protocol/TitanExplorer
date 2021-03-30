@@ -34,7 +34,7 @@
 		// Countdown init
 		if($('.countdown').length){
 			$('.countdown').downCount({
-				date: '12/30/2020 12:00:00',
+				date: '05/31/2021 23:59:59',
 				offset: +10
 			});
 		}	
