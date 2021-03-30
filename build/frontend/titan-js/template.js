@@ -2,6 +2,7 @@ const TMP = {
   TRANSACTION: "TRANSACTION",
   ADDRESS: "ADDRESS",
   BLOCK: "BLOCK",
+  EXPLORER_ITEM: 'EXPLORER_ITEM'
 };
 
 const tmpGenetator = (tmp, resource) => {
@@ -15,6 +16,10 @@ const tmpGenetator = (tmp, resource) => {
 
   if (tmp === TMP.BLOCK) {
     return blockTmp(resource);
+  }
+
+  if (tmp === TMP.EXPLORER_ITEM) {
+      return explorerItemTmp(resource);
   }
 
   return "";
@@ -36,8 +41,6 @@ const txTmp = ({
   const _from = from.startsWith("[")
     ? JSON.parse(from).map((a) => a.addresses[0])
     : [from];
-
-  console.log(_from.length);
 
   const _to = to.startsWith("[")
     ? JSON.parse(to).map((a) => a.addresses[0])
@@ -118,6 +121,28 @@ const blockTmp = ({ name, blockHeight, timestamp, txCount }) =>
     <td>${txCount}</td>
     </tr>
     `;
+
+const explorerItemTmp = ({ name, blockHeight, tps, avgFee }) => `
+    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+        <div class="item">
+            <div class="title">
+                <div class="icon"></div>
+                <h5>${name}</h5>
+            </div>
+            <div class="text">
+                <span>${blockHeight} Blocks</span>
+            </div>
+
+            <div class="text">
+                <span>${tps} TPS</span>
+            </div>
+
+            <div class="text">
+                <span>Fee: ${avgFee} </span>
+            </div>
+        </div>
+    </div>
+`;
 
 const formatLength = (str, length = 16) => {
   try {
