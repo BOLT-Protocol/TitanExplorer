@@ -1,12 +1,17 @@
 $(document).ready(() => {
-    renderBlocks();
+    API.getBlocks().then((res) => {
+        console.log(res);
+        if (res.success) {
+            renderBlocks(res.payload.items);
+        }
+    }, e => console.error(e));
   });
 
 
-  const renderBlocks = () => {
-    new Array(10).fill("").forEach((el) => {
+  const renderBlocks = (blocks) => {
+    blocks.forEach((el) => {
       $(".block-list tbody").append(
-        tmpGenetator(TMP.BLOCK, { blockHeight: 10000, timestamp: Date.now(), txCount: 999 })
+        tmpGenetator(TMP.BLOCK, { name: el.name, blockHeight: el.blockHeight, timestamp: el.timestamp, txCount: el.txCount })
       );
     });
   };
