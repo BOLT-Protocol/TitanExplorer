@@ -1,13 +1,24 @@
 $(document).ready(() => {
-    renderBlocks();
+  API.getBlocks().then(
+    (res) => {
+      if (res.success) {
+        renderBlocks(res.payload.items);
+      }
+    },
+    (e) => console.error(e)
+  );
+});
+
+const renderBlocks = (blocks) => {
+  blocks.forEach((el) => {
+    $(".block-list tbody").append(
+      tmpGenetator(TMP.BLOCK, {
+        name: el.name,
+        blockHeight: el.blockHeight,
+        timestamp: el.timestamp * 1000,
+        txCount: el.txCount,
+        blockHash: el.blockHash
+      })
+    );
   });
-
-
-  const renderBlocks = () => {
-    new Array(10).fill("").forEach((el) => {
-      $(".block-list tbody").append(
-        tmpGenetator(TMP.BLOCK, { blockHeight: 10000, timestamp: Date.now(), txCount: 999 })
-      );
-    });
-  };
-  
+};

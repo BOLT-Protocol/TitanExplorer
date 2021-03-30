@@ -791,6 +791,11 @@ token box
   border-radius: 4px;
   position: relative;
   padding: 40px 30px;
+  font-size: .8em
+}
+
+.box .token-payment img {
+  width: 200px;
 }
 
 .box .token-payment span {
@@ -944,7 +949,7 @@ header
 
 .header-area .main-nav .logo {
   float: left;
-  margin-top: 34px;
+  margin-top: 15px;
   -webkit-transition: all 0.3s ease 0s;
   -moz-transition: all 0.3s ease 0s;
   -o-transition: all 0.3s ease 0s;
@@ -1282,7 +1287,7 @@ header
 }
 
 .header-area.header-sticky .logo {
-  margin-top: 26px;
+  margin-top: 15px;
 }
 
 .header-area.header-sticky .light-logo {
@@ -2357,6 +2362,7 @@ team
   margin-top: 40%;
   margin-left: 3px;
   margin-right: 3px;
+  font-size: .8em;
 }
 
 .team-square .profile .img .social li a {

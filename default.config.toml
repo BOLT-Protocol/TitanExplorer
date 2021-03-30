@@ -1,14 +1,14 @@
 # MerMer Default Config
 
-title = "MerMer"
+title = "TitanExplorer"
 
 [base]
-folder = "MerMer-framework"
+folder = "TitanExplorer"
 static = "./build/frontend/"
 debug = false
 
 [blockchain]
-type = "ethereum"
+type = "cafeca"
 
 [database]
 type = "firebase"
