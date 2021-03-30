@@ -17,7 +17,7 @@ const renderItems = (items) => {
         name: el.name,
         blockHeight: el.blockHeight,
         tps: el.tps,
-        avgFee: el.avg_fee,
+        avgFee: el.avgFee,
       })
     );
   });
