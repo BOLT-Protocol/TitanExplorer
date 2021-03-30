@@ -791,6 +791,11 @@ token box
   border-radius: 4px;
   position: relative;
   padding: 40px 30px;
+  font-size: .8em
+}
+
+.box .token-payment img {
+  width: 200px;
 }
 
 .box .token-payment span {
@@ -2357,6 +2362,7 @@ team
   margin-top: 40%;
   margin-left: 3px;
   margin-right: 3px;
+  font-size: .8em;
 }
 
 .team-square .profile .img .social li a {
