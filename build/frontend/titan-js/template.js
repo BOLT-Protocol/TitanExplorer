@@ -37,7 +37,7 @@ const txTmp = ({
     ? JSON.parse(from).map((a) => a.addresses[0])
     : [from];
 
-    console.log(_from.length)
+  console.log(_from.length);
 
   const _to = to.startsWith("[")
     ? JSON.parse(to).map((a) => a.addresses[0])
@@ -51,14 +51,19 @@ const txTmp = ({
             ${_from
               .map(
                 (addr) =>
-                  `<a href="address.html">${formatLength(addr)}</a><br/>`
+                  `<a href="address.html?address=${addr}">${formatLength(
+                    addr
+                  )}</a><br/>`
               )
               .join("")}
           </td>
           <td>
           ${_to
             .map(
-              (addr) => `<a href="address.html">${formatLength(addr)}</a><br/>`
+              (addr) =>
+                `<a href="address.html?address=${addr}">${formatLength(
+                  addr
+                )}</a><br/>`
             )
             .join("")}
 
@@ -77,22 +82,31 @@ const txTmp = ({
   `;
 };
 
-const addressTmp = ({ address, txCount, balance }) =>
+const addressTmp = ({ address, txCount, balance, blockchain }) =>
   `
-    <tr>
-        <td><strong>Address</strong></td>
-        <td>${address}</td>
-    </tr>
+  <table class="table table-striped table-latests ">
+        <tbody >
+            <tr>
+                <td><strong>Blockchain</strong></td>
+                <td>${blockchain}</td>
+            </tr>
+            
+            <tr>
+                <td><strong>Address</strong></td>
+                <td>${address}</td>
+            </tr>
 
-    <tr>
-        <td><strong>No. Transactions</strong></td>
-        <td>${txCount}</td>
-    </tr>
-    <tr>
-        <td><strong>Balance</strong></td>
-        <td>${balance}</td>
-    </tr>
-    `;
+            <tr>
+                <td><strong>No. Transactions</strong></td>
+                <td>${txCount}</td>
+            </tr>
+            <tr>
+                <td><strong>Balance</strong></td>
+                <td>${balance}</td>
+            </tr>
+        </ tbody>
+    </table>
+`;
 
 const blockTmp = ({ blockHeight, timestamp, txCount }) =>
   `
