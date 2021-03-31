@@ -17,7 +17,8 @@ const renderBlocks = (blocks) => {
         blockHeight: el.blockHeight,
         timestamp: el.timestamp * 1000,
         txCount: el.txCount,
-        blockHash: el.blockHash
+        blockHash: el.blockHash,
+        blockId: el.blockchainId
       })
     );
   });
