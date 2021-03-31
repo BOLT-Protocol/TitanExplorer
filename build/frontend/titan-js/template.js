@@ -58,7 +58,7 @@ const txTmp = ({
 
   return `
       <tr>
-        <td><img src="${iconUrl}" alt="${symbol}"></td>
+        <td><img style="width: 32px; height: 32px" src="${iconUrl}" alt="${symbol}"></td>
           <td><a href="transaction-detail.html?hash=${txHash}">${formatLength(
     txHash
   )}</a></td>
@@ -168,7 +168,7 @@ const searchResultTmp = (result) => {
   return `
         <div>
             ${
-              block
+              block.length > 0
                 ? `
                 <div class="border-bottom">
                     <p class="badge">Block</p>
@@ -186,7 +186,7 @@ const searchResultTmp = (result) => {
             }
 
             ${
-              transaction
+              transaction.length > 0
                 ? `
                 <div class="border-bottom">
 
@@ -206,7 +206,7 @@ const searchResultTmp = (result) => {
             }
 
         ${
-          address
+          address.length > 0
             ? `
             <div class="border-bottom">
 
@@ -251,7 +251,6 @@ const txDetailTmp = ({
 
   return `
         <tr>
-          <td><img src="${iconUrl}" alt="${symbol}"></td>
           <td>${block}</td>
             <td><a href="transaction-detail.html?hash=${txHash}">${formatLength(
     txHash
