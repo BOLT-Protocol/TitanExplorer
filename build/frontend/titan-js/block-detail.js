@@ -28,7 +28,8 @@ $(document).ready(() => {
                 timestamp: detailRes.payload.timestamp * 1000,
                 blockchain: detailRes.payload.name,
                 blockHash: block.blockHash,
-                blockId: block.blockchainId
+                blockId: block.blockchainId,
+                name: detailRes.payload.name
               });
             
 
