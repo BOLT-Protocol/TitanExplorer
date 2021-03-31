@@ -34,5 +34,5 @@ const API = {
   getTransactionsByBlock: (blockchainId, blockId) =>
     _request(`/blockchain/${blockchainId}/block/${blockId}/transactions`)(),
   postSearch: (keyword) => _request(`/search/${keyword}`, 'POST')(),
-  getMetrics: _request("/blockchains/height/metrics"),
+  getTransactionDetail: (txId) => _request(`/transaction/${txId}`)(),
 };
