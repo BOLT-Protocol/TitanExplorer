@@ -116,11 +116,11 @@ const addressTmp = ({ address, txCount, balance, blockchain }) =>
     </table>
 `;
 
-const blockTmp = ({ name, blockHeight, timestamp, txCount, blockHash }) =>
+const blockTmp = ({ name, blockHeight, timestamp, txCount, blockHash, blockId }) =>
   `
   <tr>
     <td>${name}</td>
-    <td><a href="block-detail.html?blockHash=${blockHash}">${blockHeight}</a></td>
+    <td><a href="block-detail.html?blockHash=${blockHash}&blockId=${blockId}">${blockHeight}</a></td>
     <td>${new Date(timestamp)}</td>
     <!-- <td>1 - 0.3 kB</td>-->
     <td>${txCount}</td>
@@ -156,12 +156,12 @@ const searchResultTmp = (result) => {
             ${
               block
                 ? `
-                <p>Block</p>
+                <p class="badge">Block</p>
                 <ul>
                     ${block
                       .map(
                         (v) =>
-                          `<li><a href="block-detail.html?blockHash=${v}">${v}</a></li>`
+                          `<li class="text-truncate"><a href="block-detail.html?blockHash=${v.blockHash}&blockId=${v.blockchainId}">${v.blockHash}</a></li>`
                       )
                       .join("")}
                 </ul>
@@ -172,12 +172,12 @@ const searchResultTmp = (result) => {
             ${
               transaction
                 ? `
-            <p>Block</p>
+            <p class="badge">Transaction</p>
             <ul>
                 ${transaction
                   .map(
                     (v) =>
-                      `<li><a href="transaction-detail.html?hash=${v}">${v}</a></li>`
+                      `<li class="text-truncate"><a href="transaction-detail.html?hash=${v.txid}">${v.txid}</a></li>`
                   )
                   .join("")}
             </ul>
@@ -188,10 +188,10 @@ const searchResultTmp = (result) => {
         ${
           address
             ? `
-        <p>Block</p>
+        <p class="badge">Address</p>
         <ul>
-            ${block
-              .map((v) => `<li><a href="address.html?address=${v}">${v}</a></li>`)
+            ${address
+              .map((v) => `<li class="text-truncate"><a href="address.html?address=${v.address}">${v.address}</a></li>`)
               .join("")}
         </ul>
     `

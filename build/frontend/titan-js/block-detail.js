@@ -1,15 +1,17 @@
 $(document).ready(() => {
   const search = new URLSearchParams(location.search);
   const blockHash = search.get("blockHash");
+  const blockId = search.get('blockId');
 
-  if (!blockHash) return;
+  if (!blockHash || !blockId) return;
 
   API.getBlocks().then(
     (res) => {
       if (res.success) {
-        const block = res.payload.items.find(
-          (item) => item.blockHash === blockHash
-        );
+        const block = {
+            blockHash: blockHash,
+            blockchainId: blockId
+        }
 
         if (!block) return;
 
@@ -25,7 +27,8 @@ $(document).ready(() => {
                 txCount: detailRes.payload.txCount,
                 timestamp: detailRes.payload.timestamp * 1000,
                 blockchain: detailRes.payload.name,
-                blockHash: block.blockHash
+                blockHash: block.blockHash,
+                blockId: block.blockchainId
               });
             
 
@@ -38,9 +41,9 @@ $(document).ready(() => {
   );
 });
 
-const renderDetail = ({ name, blockHeight, timestamp, txCount, blockHash }) => {
+const renderDetail = ({ name, blockHeight, timestamp, txCount, blockHash, blockId }) => {
   $(".block-detail tbody").append(
-    tmpGenetator(TMP.BLOCK, { name, blockHeight, timestamp, txCount, blockHash })
+    tmpGenetator(TMP.BLOCK, { name, blockHeight, timestamp, txCount, blockHash, blockId })
   );
 };
 

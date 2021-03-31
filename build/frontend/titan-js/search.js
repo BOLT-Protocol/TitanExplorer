@@ -12,8 +12,8 @@ $(document).ready(() => {
   $result.css("left", "55px");
   $result.css("top", "calc(100% - 40px)");
 
-//   $result.css("height", "100px");
-//   $result.css("background", "red");
+  //   $result.css("height", "100px");
+  //   $result.css("background", "red");
 
   $input.bind("input", (e) => {
     clearTimeout(searchTimeout);
@@ -29,14 +29,11 @@ $(document).ready(() => {
     }, TIMEOUT);
   });
 
-  //   $(".search button").click((e) => {
-  //     if (!$input.val() || searching) {
-  //       return;
-  //     }
-
-  //     searching = true;
-  //     onSearch($input.val());
-  //   });
+  $("body").on("click", function (event) {
+    if (!$(event.target).is(".search-result")) {
+        $(".search-result").hide();
+    }
+  });
 });
 
 const onSearch = (v) => {
@@ -45,25 +42,9 @@ const onSearch = (v) => {
       searching = false;
 
       if (res.success) {
-        // const { redirectType, redirectPathId } = res.payload;
-        // const path = location.pathname;
-        // const page = path.substring(path.lastIndexOf("/") + 1);
-
-        // switch (redirectType) {
-        //   case "address":
-        //     location.href = location.href.replace(
-        //       page,
-        //       `address.html?address=${redirectPathId}`
-        //     );
-        //     break;
-        //   case "transaction":
-        //     break;
-        //   default:
-        // }
-
         $(".search-result").show();
         console.log(tmpGenetator(TMP.SEARCH_RESAULT, res.payload));
-        $(".search-result").html(tmpGenetator(TMP.SEARCH_RESAULT, res.payload))
+        $(".search-result").html(tmpGenetator(TMP.SEARCH_RESAULT, res.payload));
       }
     },
     (e) => {

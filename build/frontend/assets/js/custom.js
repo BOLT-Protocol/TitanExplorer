@@ -14,20 +14,20 @@
 		}
 
 		// Language Flags Dropdown Toggle
-		$('body').on('click', function(){	
-			var el = e.target;
+		// $('body').on('click', function(){	
+		// 	var el = e.target;
 	
-			if($(el).parents('.flag-list').length || $(el).hasClass('flag-list')) return; 
+		// 	if($(el).parents('.flag-list').length || $(el).hasClass('flag-list')) return; 
 	
-			if($('.flag-list').css('display') === 'block') {
-				$('.flag-list').css('display', 'none');
-				return;
-			}
+		// 	if($('.flag-list').css('display') === 'block') {
+		// 		$('.flag-list').css('display', 'none');
+		// 		return;
+		// 	}
 	
-			if( $(el).hasClass('selected') || $(el).parents('.selected').length) {
-				$('.flag-list').css('display', 'block');
-			}
-		});
+		// 	if( $(el).hasClass('selected') || $(el).parents('.selected').length) {
+		// 		$('.flag-list').css('display', 'block');
+		// 	}
+		// });
 
 
 
