@@ -4,7 +4,6 @@ const TIMEOUT = 500;
 
 $(document).ready(() => {
   const $input = $(".search input");
-  console.log($input);
   const $result = $(".search-result");
   $result.hide();
 
