@@ -155,10 +155,11 @@
 		const path  = location.pathname;
 		const page = path.substring(path.lastIndexOf("/") + 1);
 
-		if (page !== 'transactions.html') {
+		if (page !== 'transactions.html' && page !== 'blocks.html') {
 			fadeOut();
 		}
-		
+		// else
+		// Will Call fadeOut() After Get Response
 	});
 
 

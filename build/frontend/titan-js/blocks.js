@@ -3,6 +3,7 @@ $(document).ready(() => {
     (res) => {
       if (res.success) {
         renderBlocks(res.payload.items);
+        fadeOut();
       }
     },
     (e) => console.error(e)
