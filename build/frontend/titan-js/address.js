@@ -4,6 +4,14 @@ $(document).ready(() => {
 
   if (!address) return;
 
+  $('#qrcode').qrcode({
+      text: address,
+      width: 240,
+      height: 240,
+      mode: 0, // 4 image box
+    //   image: $('.dark-logo')[0]
+  });
+
   Promise.all([
     API.getAddress(address),
     API.getTransactionsByAddress(address, {}),
