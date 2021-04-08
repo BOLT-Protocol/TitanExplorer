@@ -1,0 +1,72 @@
+.swap-container {
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  align-items: center;
+}
+
+.swap-container i {
+    font-size: 30px;
+    margin: 20px;
+    color: #0EB8D9;
+}
+
+.swap-container .btn {
+    margin-top: 30px;
+}
+
+.swap-container p {
+    margin-left: auto;
+    color: #888;
+    font-size: .875rem;
+    padding: 10px 0;
+}
+
+.swap-container .btn-primary-line {
+    line-height: inherit;
+}
+
+.swap-item {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.swap-item > div {
+  /* display: flex; */
+  position: relative;
+  flex: 1;
+  margin-right: 10px;
+}
+
+.swap-item > div input {
+  border: 0;
+  outline: none;
+  padding: 7px 0;
+  border-bottom: 1px solid #ccc;
+  width: 100%;
+  text-align: right;
+}
+
+/* .swap-item input::not(:empty) {
+} */
+
+.focus-border {
+  width: 0;
+  transition: 0.4s;
+  height: 2px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background-color: #2CDDC9;
+}
+
+.swap-item > div input:focus ~ .focus-border {
+  width: 100%;
+}
+
+
+#swap-btn {
+    display: none;
+}
