@@ -2,7 +2,13 @@ let connector;
 let WCState = {};
 
 $(document).ready(() => {
-  walletConnectInit().then(() => {});
+    $("#walletconnect-btn").click(function(){
+        walletConnectInit().then(() => {});
+    });
+
+    $("#swap-btn").click(function(){
+      sendTransaction().then(() => {});
+  }); 
 });
 
 const walletConnectInit = async () => {
@@ -70,6 +76,7 @@ const subscribeToEvents = () => {
     };
 
     onSessionUpdate(accounts, chainId);
+    renderSwapBtn();
   }
 };
 
@@ -79,11 +86,10 @@ const onSessionUpdate = async (accounts, chainId) => {
 };
 
 const killSession = async () => {
-  //   const { connector } = this.state;
   if (connector) {
     connector.killSession();
   }
-  //   this.resetApp();
+  resetApp();
 };
 
 const getAccountAssets = async () => {
@@ -91,9 +97,13 @@ const getAccountAssets = async () => {
   // this.setState({ fetching: true });
   try {
     // get account balances
-    API.getAssets(address, chainId);
+    // const assets = await API.getAssets(address, chainId);
+    const assets = 1;
 
     //   await this.setState({ fetching: false, address, assets });
+    WCState = {...WCState, assets}
+
+    updateMaxAmount(assets);
   } catch (error) {
     console.error(error);
     //   await this.setState({ fetching: false });
@@ -103,12 +113,74 @@ const getAccountAssets = async () => {
 const onConnect = async (payload) => {
   const { chainId, accounts } = payload.params[0];
   const address = accounts[0];
-  console.log(chainId, address);
+  WCState = {
+    connected: true,
+    chainId,
+    accounts,
+    address,
+  };
+  renderSwapBtn();
   await getAccountAssets();
 };
 
+const onDisconnect = () => {
+  resetApp();
+};
+
+const resetApp = () => {
+  WCState = {};
+  renderWCBtn();
+};
+
 const sendTransaction = async () => {
+  console.log(WCState);
   // TODO:
-  const tx = {};
+
+  // from
+  const from = WCState.address;
+
+  // to
+  const to = WCState.address;
+
+  // nonce
+  const nonce = "0x1";
+
+  // gasPrice
+  const gasPrices = "0x6c341080bd1fb00000";
+
+  // gasLimit
+  const gasLimit = "0x5208";
+
+  // value
+  const value = "0x0";
+
+  // data
+  const data = "0x";
+
+  const tx = {
+    from,
+    to,
+    nonce,
+    gasPrices,
+    gasLimit,
+    value,
+    data,
+  };
   const result = await connector.sendTransaction(tx);
 };
+
+const updateMaxAmount = (assets) => {
+    // TODO
+    $('#max-amount').html(`Max: ${assets}`);
+}
+
+const renderSwapBtn = () => {
+  $('#walletconnect-btn').remove();
+  $('#swap-btn').show();
+}
+
+const renderReset = () => {
+  $('#max-amount').html('');
+  $('#walletconnect-btn').show();
+  $('#swap-btn').hide();
+}

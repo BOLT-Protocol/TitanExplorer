@@ -21,6 +21,7 @@
 
 	<!-- Custom CSS -->
 	<link href="assets/css/green.css" rel="stylesheet" type="text/css">
+	<link href="assets/css/swap.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
@@ -441,14 +442,59 @@
 					</div>
 				</div>
 			</div>
+
 			<div class="row">
 				<div class="col-lg-12">
 					<div class="box">
-						<div class="row">
+						<div class="swap-container">
+
+							<div class="swap-item">
+								<div>
+									<input type="text" />
+									<span class="focus-border"></span>
+								</div>
+								<span>
+									ETH
+								</span>
+							</div>
+							<p id="max-amount"></p>
+							
+							<i class="fa fa-chevron-circle-down" aria-hidden="true"></i>
+
+							<div class="swap-item">
+								<div>
+									<input type="text" />
+									<span class="focus-border"></span>
+								</div>
+								<span>
+									TWS
+								</span>
+							</div>
+
+							<button class="btn btn-outline-primary" id="walletconnect-btn">
+								<img src="assets/images/icon/walletConnect.svg" alt="walletconnect">
+								WalletConnect
+							</button>
+
+							<button class="btn btn-primary-line" id="swap-btn">
+								<span>
+									購買
+								</span>
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			
+			<!-- <div class="row">
+				<div class="col-lg-12">
+					<div class="box">
+						<div class="row"> -->
 							<!-- ***** Token Progress and Info Start ***** -->
-							<div class="col-lg-6 col-md-6 cols-m-12">
+							<!-- <div class="col-lg-6 col-md-6 cols-m-12"> -->
 								<!-- ***** Token Progress Start ***** -->
-								<div class="token-progress">
+								<!-- <div class="token-progress">
 									<ul id="test">
 										<li class="progress-active" data-progress="0%"></li>
 										<li class="item complate" data-position="0%">
@@ -472,11 +518,11 @@
 											<span>指紋辨識信用卡</span>
 										</li>
 									</ul>
-								</div>
+								</div> -->
 								<!-- ***** Token Progress End ***** -->
 
 								<!-- ***** Token Info Table Start ***** -->
-								<div class="token-info">
+								<!-- <div class="token-info">
 									<div class="item">
 										<strong>募資階段</strong>
 										<span>階段 1 已開始</span>
@@ -493,17 +539,17 @@
 										<strong>投資方式</strong>
 										<span>ETH</span>
 									</div>
-								</div>
+								</div> -->
 								<!-- ***** Token Info Table End ***** -->
-							</div>
+							<!-- </div> -->
 							<!-- ***** Token Progress and Info End ***** -->
 
 							<!-- ***** Token Countdown and Payment Start ***** -->
-							<div class="col-lg-6 col-md-6 cols-m-12">
+							<!-- <div class="col-lg-6 col-md-6 cols-m-12">
 								<div class="token">
-									<h6 class="title">募資結束時間</h6>
+									<h6 class="title">募資結束時間</h6> -->
 									<!-- ***** Countdown Start ***** -->
-									<ul class="countdown">
+									<!-- <ul class="countdown">
 										<li>
 											<span class="days">00</span>
 											<p class="days_ref">days</p>
@@ -523,9 +569,9 @@
 											<span class="seconds">00</span>
 											<p class="seconds_ref">seconds</p>
 										</li>
-									</ul>
+									</ul> -->
 									<!-- ***** Countdown End ***** -->
-									<div class="token-payment">
+									<!-- <div class="token-payment">
 										<span>推薦使用 TideWallet 支付</span>
 										<div class="radios">
 											<div>
@@ -533,14 +579,14 @@
 												0x89f20c02Eb8dB7fb18FdFE8F081C8c9db96F8093
 											</div>
 										</div>
-									</div>
-								</div>
-							</div>
+									</div> -->
+								<!-- </div>
+							</div> -->
 							<!-- ***** Token Countdown and Payment End ***** -->
-						</div>
+						<!-- </div>
 					</div>
 				</div>
-			</div>
+			</div> -->
 		</div>
 	</section>
 	<script>
@@ -998,10 +1044,14 @@
 	<script src="assets/js/jquery.downCount.js"></script>
 	<script src="assets/js/parallax.min.js"></script>
 	<script src="assets/js/owl.carousel.min.js"></script>
+	<script src="assets/js/walletconnect.min.js"></script>
+
 
 	<!-- Global Init -->
 	<script src="assets/js/particle-green.js"></script>
 	<script src="assets/js/custom.js"></script>
+	<script src="titan-js/tide-swap.js"></script>
+
 </body>
 
 </html>
