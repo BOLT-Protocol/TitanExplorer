@@ -1,14 +1,38 @@
 let connector;
 let WCState = {};
+// TODO: Get From API
+let exchangeRate = 0.5;
 
 $(document).ready(() => {
-    $("#walletconnect-btn").click(function(){
-        walletConnectInit().then(() => {});
-    });
+  $("#walletconnect-btn").click(function () {
+    walletConnectInit().then(() => {});
+  });
 
-    $("#swap-btn").click(function(){
-      sendTransaction().then(() => {});
-  }); 
+  $("#swap-btn").click(function () {
+    sendTransaction().then(() => {});
+  });
+
+  $("#from-input").on("keyup", handleInput("from"));
+  $("#to-input").on("keyup", handleInput("to"));
+
+  function handleInput(direction) {
+    var _timeout;
+
+    return () => {
+      clearTimeout(_timeout);
+      if (!exchangeRate) return;
+      _timeout = setTimeout(() => {
+        const $input = direction === "from" ? $("#from-input") : $("#to-input");
+        const amount = parseFloat($input.val());
+        if (!amount) return;
+        const value =
+          direction === "from" ? amount * exchangeRate : amount / exchangeRate;
+        const $result =
+          direction === "from" ? $("#to-input") : $("#from-input");
+        $result.val(value);
+      }, 500);
+    };
+  }
 });
 
 const walletConnectInit = async () => {
@@ -77,6 +101,7 @@ const subscribeToEvents = () => {
 
     onSessionUpdate(accounts, chainId);
     renderSwapBtn();
+    updateAddress(address);
   }
 };
 
@@ -101,7 +126,7 @@ const getAccountAssets = async () => {
     const assets = 1;
 
     //   await this.setState({ fetching: false, address, assets });
-    WCState = {...WCState, assets}
+    WCState = { ...WCState, assets };
 
     updateMaxAmount(assets);
   } catch (error) {
@@ -120,6 +145,7 @@ const onConnect = async (payload) => {
     address,
   };
   renderSwapBtn();
+  updateAddress(address);
   await getAccountAssets();
 };
 
@@ -129,11 +155,12 @@ const onDisconnect = () => {
 
 const resetApp = () => {
   WCState = {};
-  renderWCBtn();
+  renderReset();
 };
 
 const sendTransaction = async () => {
   console.log(WCState);
+  console.log(connector);
   // TODO:
 
   // from
@@ -170,17 +197,22 @@ const sendTransaction = async () => {
 };
 
 const updateMaxAmount = (assets) => {
-    // TODO
-    $('#max-amount').html(`Max: ${assets}`);
-}
+  // TODO
+  $("#max-amount").html(`Max: ${assets}`);
+};
+
+const updateAddress = (address) => {
+  $("#swap-address").html(formatLength(address));
+};
 
 const renderSwapBtn = () => {
-  $('#walletconnect-btn').remove();
-  $('#swap-btn').show();
-}
+  $("#walletconnect-btn").hide();
+  $("#swap-btn").show();
+};
 
 const renderReset = () => {
-  $('#max-amount').html('');
-  $('#walletconnect-btn').show();
-  $('#swap-btn').hide();
-}
+  $("#max-amount").html("");
+  $("#swap-address").html("");
+  $("#walletconnect-btn").show();
+  $("#swap-btn").hide();
+};
