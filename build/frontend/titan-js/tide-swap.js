@@ -123,14 +123,20 @@ const getAccountAssets = async () => {
   try {
     // get account balances
     // const assets = await API.getAssets(address, chainId);
-    const assets = 1;
+    const res = await API.getAddress(address);
 
-    //   await this.setState({ fetching: false, address, assets });
-    WCState = { ...WCState, assets };
+    if (res.success) {
+      const assets = res.payload.balance.find((t) => t.blockchainId === ETH_BID)
+        .balance;
 
-    updateMaxAmount(assets);
+      WCState = { ...WCState, assets };
+      updateMaxAmount(assets);
+    } else {
+      killSession();
+    }
   } catch (error) {
     console.error(error);
+    killSession();
     //   await this.setState({ fetching: false });
   }
 };
@@ -193,7 +199,18 @@ const sendTransaction = async () => {
     value,
     data,
   };
-  const result = await connector.sendTransaction(tx);
+
+  renderPending();
+  toggleModal();
+  try {
+    const result = await connector.sendTransaction(tx);
+    console.log(result);
+    renderResult();
+  } catch (e) {
+    console.error(e);
+    renderReject();
+    // toggleModal();
+  }
 };
 
 const updateMaxAmount = (assets) => {
@@ -215,4 +232,55 @@ const renderReset = () => {
   $("#swap-address").html("");
   $("#walletconnect-btn").show();
   $("#swap-btn").hide();
+};
+
+const renderPending = () => {
+  $("#swap-modal .modal-body").html(
+    `
+      <div class="row pb-3">
+        <div class="col d-flex flex-column align-items-center">
+          <h4>
+            Pending Call Request
+          </h4>
+          <div class="loading-ripple m-4"><div></div><div></div></div>
+          <p>Approve or reject request using your wallet</p>
+        </div>
+      </div>
+    `
+  );
+};
+
+const renderReject = () => {
+  $("#swap-modal .modal-body").html(
+    `
+      <div class="row pb-3">
+        <div class="col d-flex flex-column align-items-center">
+          <h4>
+           Call Resuest Rejected
+          </h4>
+          
+        </div>
+      </div>
+    `
+  );
+};
+
+// TODO: Render Transaction Content
+const renderResult = () => {
+  $("#swap-modal .modal-body").html(
+    `
+      <div class="row pb-3">
+        <div class="col d-flex flex-column align-items-center">
+          <h4>
+           Call Resuest Approved
+          </h4>
+          
+        </div>
+      </div>
+    `
+  );
+};
+
+const toggleModal = () => {
+  $("#swap-modal").modal("toggle");
 };
