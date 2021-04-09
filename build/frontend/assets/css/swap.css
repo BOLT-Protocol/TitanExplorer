@@ -7,30 +7,30 @@
 }
 
 .swap-container i {
-    font-size: 30px;
-    margin: 20px;
-    color: #0EB8D9;
+  font-size: 30px;
+  margin: 20px;
+  color: #0eb8d9;
 }
 
 .swap-container .btn {
-    margin-top: 30px;
+  margin-top: 30px;
 }
 
 .swap-container p {
-    margin-left: auto;
-    color: #888;
-    font-size: .875rem;
-    padding: 10px 0;
+  margin-left: auto;
+  color: #888;
+  font-size: 0.875rem;
+  padding: 10px 0;
 }
 
 .swap-container .btn-primary-line {
-    line-height: inherit;
+  line-height: inherit;
 }
 
 .swap-item {
-    display: flex;
-    align-items: center;
-    width: 100%;
+  display: flex;
+  align-items: center;
+  width: 100%;
 }
 
 .swap-item > div {
@@ -59,14 +59,49 @@
   position: absolute;
   bottom: 0;
   left: 0;
-  background-color: #2CDDC9;
+  background-color: #2cddc9;
 }
 
 .swap-item > div input:focus ~ .focus-border {
   width: 100%;
 }
 
-
 #swap-btn {
-    display: none;
+  display: none;
+}
+
+.loading-ripple {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+.loading-ripple div {
+  position: absolute;
+  border: 4px solid #fff;
+  opacity: 1;
+  border-radius: 50%;
+  animation: loading-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+  background-color: #2cddc9;
+}
+.loading-ripple div:nth-child(2) {
+  animation-delay: -0.5s;
+}
+
+
+@keyframes loading-ripple {
+  0% {
+    top: 36px;
+    left: 36px;
+    width: 0;
+    height: 0;
+    opacity: 1;
+  }
+  100% {
+    top: 0px;
+    left: 0px;
+    width: 72px;
+    height: 72px;
+    opacity: 0;
+  }
 }

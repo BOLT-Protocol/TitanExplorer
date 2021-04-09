@@ -193,7 +193,18 @@ const sendTransaction = async () => {
     value,
     data,
   };
-  const result = await connector.sendTransaction(tx);
+
+  renderPending();
+  toggleModal();
+  try {
+    const result = await connector.sendTransaction(tx);
+    console.log(result);
+    renderResult();
+  } catch (e) {
+    console.error(e);
+    renderReject();
+    // toggleModal();
+  }
 };
 
 const updateMaxAmount = (assets) => {
@@ -215,4 +226,55 @@ const renderReset = () => {
   $("#swap-address").html("");
   $("#walletconnect-btn").show();
   $("#swap-btn").hide();
+};
+
+const renderPending = () => {
+  $("#swap-modal .modal-body").html(
+    `
+      <div class="row pb-3">
+        <div class="col d-flex flex-column align-items-center">
+          <h4>
+            Pending Call Request
+          </h4>
+          <div class="loading-ripple m-4"><div></div><div></div></div>
+          <p>Approve or reject request using your wallet</p>
+        </div>
+      </div>
+    `
+  );
+};
+
+const renderReject = () => {
+  $("#swap-modal .modal-body").html(
+    `
+      <div class="row pb-3">
+        <div class="col d-flex flex-column align-items-center">
+          <h4>
+           Call Resuest Rejected
+          </h4>
+          
+        </div>
+      </div>
+    `
+  );
+};
+
+// TODO: Render Transaction Content
+const renderResult = () => {
+  $("#swap-modal .modal-body").html(
+    `
+      <div class="row pb-3">
+        <div class="col d-flex flex-column align-items-center">
+          <h4>
+           Call Resuest Approved
+          </h4>
+          
+        </div>
+      </div>
+    `
+  );
+};
+
+const toggleModal = () => {
+  $("#swap-modal").modal("toggle");
 };
