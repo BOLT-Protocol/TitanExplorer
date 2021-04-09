@@ -123,14 +123,20 @@ const getAccountAssets = async () => {
   try {
     // get account balances
     // const assets = await API.getAssets(address, chainId);
-    const assets = 1;
+    const res = await API.getAddress(address);
 
-    //   await this.setState({ fetching: false, address, assets });
-    WCState = { ...WCState, assets };
+    if (res.success) {
+      const assets = res.payload.balance.find((t) => t.blockchainId === ETH_BID)
+        .balance;
 
-    updateMaxAmount(assets);
+      WCState = { ...WCState, assets };
+      updateMaxAmount(assets);
+    } else {
+      killSession();
+    }
   } catch (error) {
     console.error(error);
+    killSession();
     //   await this.setState({ fetching: false });
   }
 };

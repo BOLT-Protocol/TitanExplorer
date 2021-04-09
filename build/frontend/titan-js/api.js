@@ -35,5 +35,4 @@ const API = {
     _request(`/blockchain/${blockchainId}/block/${blockId}/transactions`)(),
   postSearch: (keyword) => _request(`/search/${keyword}`, 'POST')(),
   getTransactionDetail: (txId) => _request(`/transaction/${txId}`)(),
-  getAssets: (address, chainId) => _request(`/account-assets?address=${address}&chainId=${chainId}`, 'GET', 'https://ethereum-api.xyz')()
 };
