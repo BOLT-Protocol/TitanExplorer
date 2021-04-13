@@ -2,9 +2,9 @@ const _headers = {
   "Content-Type": "application/json;charset=UTF-8",
 };
 
-const _request = (path, type = "GET") => (body) =>
+const _request = (path, type = "GET", endpointOverride) => (body) =>
   $.ajax({
-    url: ENDPOINT + path,
+    url: (endpointOverride || ENDPOINT) + path,
     type,
     dataType: "json",
     xhrFields: { withCredentials: true },
@@ -34,5 +34,5 @@ const API = {
   getTransactionsByBlock: (blockchainId, blockId) =>
     _request(`/blockchain/${blockchainId}/block/${blockId}/transactions`)(),
   postSearch: (keyword) => _request(`/search/${keyword}`, 'POST')(),
-  getMetrics: _request("/blockchains/height/metrics"),
+  getTransactionDetail: (txId) => _request(`/transaction/${txId}`)(),
 };

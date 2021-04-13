@@ -3,7 +3,6 @@
 
 	$(document).ready(function(){
 
-		welcome();
 
 		// Menu Dropdown Toggle
 		if($('.menu-trigger').length){
@@ -14,20 +13,20 @@
 		}
 
 		// Language Flags Dropdown Toggle
-		$('body').on('click', function(){	
-			var el = e.target;
+		// $('body').on('click', function(){	
+		// 	var el = e.target;
 	
-			if($(el).parents('.flag-list').length || $(el).hasClass('flag-list')) return; 
+		// 	if($(el).parents('.flag-list').length || $(el).hasClass('flag-list')) return; 
 	
-			if($('.flag-list').css('display') === 'block') {
-				$('.flag-list').css('display', 'none');
-				return;
-			}
+		// 	if($('.flag-list').css('display') === 'block') {
+		// 		$('.flag-list').css('display', 'none');
+		// 		return;
+		// 	}
 	
-			if( $(el).hasClass('selected') || $(el).parents('.selected').length) {
-				$('.flag-list').css('display', 'block');
-			}
-		});
+		// 	if( $(el).hasClass('selected') || $(el).parents('.selected').length) {
+		// 		$('.flag-list').css('display', 'block');
+		// 	}
+		// });
 
 
 
@@ -152,21 +151,15 @@
 
 	// Page loading animation
 	$(window).load(function(){
-		$(".loading-wrapper").animate({
-			'opacity': '0'
-		}, 600, function(){
-			setTimeout(function(){
-				$(".loading-wrapper").css("visibility", "hidden").fadeOut();
 
-				// Parallax init
-				if($('.parallax').length){
-					$('.parallax').parallax({
-						imageSrc: 'assets/images/parallax.jpg',
-						zIndex: '1'
-					});
-				}
-			}, 300);
-		});
+		const path  = location.pathname;
+		const page = path.substring(path.lastIndexOf("/") + 1);
+
+		if (page !== 'transactions.html' && page !== 'blocks.html') {
+			fadeOut();
+		}
+		// else
+		// Will Call fadeOut() After Get Response
 	});
 
 
@@ -213,3 +206,22 @@
 	}
 
 })(jQuery);
+
+function fadeOut() {
+	$(".loading-wrapper").animate({
+		'opacity': '0'
+	}, 600, function(){
+		
+		setTimeout(function(){
+			$(".loading-wrapper").css("visibility", "hidden").fadeOut();
+
+			// Parallax init
+			if($('.parallax').length){
+				$('.parallax').parallax({
+					imageSrc: 'assets/images/parallax.jpg',
+					zIndex: '1'
+				});
+			}
+		}, 300);
+	});
+}

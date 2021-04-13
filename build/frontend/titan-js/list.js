@@ -8,6 +8,8 @@ $(document).ready(() => {
         res.payload.items.forEach((item) => {
           $list.append(tmpGenetator(TMP.TRANSACTION, { ...item }));
         });
+
+        fadeOut();
       }
     }, (e) => console.error(e))
 });

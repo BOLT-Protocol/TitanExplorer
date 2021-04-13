@@ -1,0 +1,107 @@
+.swap-container {
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  align-items: center;
+}
+
+.swap-container i {
+  font-size: 30px;
+  margin: 20px;
+  color: #0eb8d9;
+}
+
+.swap-container .btn {
+  margin-top: 30px;
+}
+
+.swap-container p {
+  margin-left: auto;
+  color: #888;
+  font-size: 0.875rem;
+  padding: 10px 0;
+}
+
+.swap-container .btn-primary-line {
+  line-height: inherit;
+}
+
+.swap-item {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.swap-item > div {
+  /* display: flex; */
+  position: relative;
+  flex: 1;
+  margin-right: 10px;
+}
+
+.swap-item > div input {
+  border: 0;
+  outline: none;
+  padding: 7px 0;
+  border-bottom: 1px solid #ccc;
+  width: 100%;
+  text-align: right;
+}
+
+/* .swap-item input::not(:empty) {
+} */
+
+.focus-border {
+  width: 0;
+  transition: 0.4s;
+  height: 2px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background-color: #2cddc9;
+}
+
+.swap-item > div input:focus ~ .focus-border {
+  width: 100%;
+}
+
+#swap-btn {
+  display: none;
+}
+
+.loading-ripple {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+.loading-ripple div {
+  position: absolute;
+  border: 4px solid #fff;
+  opacity: 1;
+  border-radius: 50%;
+  animation: loading-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+  background-color: #2cddc9;
+}
+.loading-ripple div:nth-child(2) {
+  animation-delay: -0.5s;
+}
+
+
+@keyframes loading-ripple {
+  0% {
+    top: 36px;
+    left: 36px;
+    width: 0;
+    height: 0;
+    opacity: 1;
+  }
+  100% {
+    top: 0px;
+    left: 0px;
+    width: 72px;
+    height: 72px;
+    opacity: 0;
+  }
+}
