@@ -10,6 +10,7 @@ $(document).ready(() => {
           $list.append(tmpGenetator(TMP.TRANSACTION_DETAIL, { ...item, timestamp: item.timestamp * 1000 }));
         });
       }
+      fadeOut();
     },
     (e) => console.error(e)
   );
