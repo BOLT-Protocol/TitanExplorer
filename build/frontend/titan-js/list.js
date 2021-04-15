@@ -6,7 +6,7 @@ $(document).ready(() => {
       if (res.success) {
         const $list = $("table.list");
         res.payload.items.forEach((item) => {
-          $list.append(tmpGenetator(TMP.TRANSACTION, { ...item }));
+          $list.append(tmpGenetator(TMP.TRANSACTION, { ...item, timestamp: item.timestamp * 1000 }));
         });
 
         fadeOut();
