@@ -92,7 +92,7 @@ const txTmp = ({
               </div>
           </td>
           -->
-          <td>${new Date(timestamp * 1000)}</td>
+          <td>${new Date(timestamp)}</td>
       </tr>
   `;
 };
@@ -135,7 +135,7 @@ const blockTmp = ({
   <tr>
     <td>${name}</td>
     <td><a href="block-detail.html?blockHash=${blockHash}&blockId=${blockId}">${blockHeight}</a></td>
-    <td>${new Date(timestamp * 1000)}</td>
+    <td>${new Date(timestamp)}</td>
     <!-- <td>1 - 0.3 kB</td>-->
     <td>${txCount}</td>
     </tr>
@@ -281,7 +281,7 @@ const txDetailTmp = ({
             <td>
                 <span>${fee}</span>
             </td>
-            <td>${new Date(timestamp * 1000)}</td>
+            <td>${new Date(timestamp)}</td>
         </tr>
     `;
 };
