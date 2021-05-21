@@ -944,7 +944,7 @@ header
 
 .header-area .main-nav .logo {
   float: left;
-  margin-top: 34px;
+  /* margin-top: 34px; */
   -webkit-transition: all 0.3s ease 0s;
   -moz-transition: all 0.3s ease 0s;
   -o-transition: all 0.3s ease 0s;
@@ -956,6 +956,7 @@ header
   -moz-transition: all 0.3s ease 0s;
   -o-transition: all 0.3s ease 0s;
   transition: all 0.3s ease 0s;
+  width: 20vw;
 }
 
 .header-area .main-nav .dark-logo {
@@ -1282,7 +1283,7 @@ header
 }
 
 .header-area.header-sticky .logo {
-  margin-top: 26px;
+  /* margin-top: 26px; */
 }
 
 .header-area.header-sticky .light-logo {
