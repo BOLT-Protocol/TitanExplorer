@@ -48,31 +48,27 @@
 						</a>
 						<!-- ***** Logo End ***** -->
 
-						<!-- ***** Lang Start ***** 
 						<div class="lang">
-							<div class="selected">
-								<img src="assets/images/flags/en.png" alt="">
-								<i class="fa fa-angle-down"></i>
+							<div data-i18n="language" class="selected">
 							</div>
 							<ul class="flag-list">
 								<li>
-									<a href="#">
-										<img src="assets/images/flags/en.png" alt=""><span>EN</span>
+									<a href="javascript:setLocale('en-us')">
+										<span>English</span>
 									</a>
 								</li>	
 								<li>
-									<a href="#">
-										<img src="assets/images/flags/ru.png" alt=""><span>RU</span>
+									<a href="javascript:setLocale('zh-tw')">
+										<span>繁體中文</span>
 									</a>
 								</li>	
 								<li>
-									<a href="#">
-										<img src="assets/images/flags/br.png" alt=""><span>BR</span>
+									<a href="javascript:setLocale('zh-cn')">
+										<span>简体中文</span>
 									</a>
 								</li>	
 							</ul>
 						</div>
-						***** Lang End ***** -->
 
 						<!-- ***** Menu Start ***** -->
 						<ul class="nav">
@@ -520,7 +516,7 @@
 	<!-- ***** Modal Start ***** -->
 	<div class="modal fade" id="swap-modal" tabindex="-1" role="dialog" aria-labelledby="swapModal" aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered" role="document">
-		  <div class="modal-content">
+      <div class="modal-content">
 			<div class="modal-header" style="border: 0; padding-bottom: 0;">
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
@@ -529,7 +525,7 @@
 
 			<div class="modal-body"></div>	
 
-		  </div>
+      </div>
 		</div>
 	</div>
 	<!-- ***** Modal End ***** -->
@@ -538,6 +534,9 @@
 
 	<!-- jQuery -->
 	<script src="assets/js/jquery-2.1.0.min.js"></script>
+
+	<!-- Cookie -->
+	<script src="assets/js/jquery.cookie.js"></script>
 
 	<!-- Bootstrap -->
 	<script src="assets/js/popper.js"></script>
@@ -572,19 +571,66 @@
 	<script>
 
 		$( document ).ready( function ( $ ) {
-			const i18n = $.i18n({
-				locale: 'zh-tw'
-			})
+			const locale = $.cookie("locale") || 'zh-tw'
+			console.log('locale:', locale);
+			const i18n = $.i18n({	locale })
 			i18n.load( 'assets/i18n/' + i18n.locale + '.json', i18n.locale ).done(
 				function () {
 					$('body').i18n();
 				} );
-
-
-			
 		} );
 		
+
+		let langBtn = false
+		$('.lang').click(function() {
+			console.log('test');
+			if(!langBtn) {
+				langBtn = true
+				$('.flag-list').css("display", "block")
+			} else {
+				langBtn = false
+				$('.flag-list').css("display", "none")
+			}
+		})
+		$('.lang').mouseleave(function() {
+			$('.flag-list').mouseleave(function() {
+				langBtn = false
+				$('.flag-list').css("display", "none")
+			})
+		})
+
+		function setLocale(locale) {
+			$.cookie("locale", locale);
+			location.reload();
+		}
 	</script>
+	<style>
+		.flag-list {
+			margin-top: 0px;
+			right: 0px;
+			width: 100px;
+		}
+		.header-area .main-nav .lang .flag-list li {
+			padding: 5px 0px;
+			font-weight: 600;
+			font-size: 14px;
+		}
+		.header-area .main-nav .lang .selected {
+			padding-top: 6px;
+			font-weight: 600;
+			font-size: 14px;
+			color: #FFFFFF;
+		}
+		@media screen and (max-width: 991px) {
+			.header-area .main-nav .lang .selected {
+				color: #000000 !important;
+			}
+		}
+		.header-area.header-sticky .lang .selected {
+			color: #3B566E !important;
+		}
+
+	</style>
 </body>
 
 </body>
